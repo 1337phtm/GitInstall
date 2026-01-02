@@ -82,16 +82,3 @@
 }
 
 Export-ModuleMember -Function Remove-Repo
-
-
-
-#suprimmer DEFINITIVEMENT DOSSIER :
-#Remove-Item -Path "C:\Repos\MonProjet" -Recurse -Force
-
-#envoyer dossier a la corbeille :
-#Add-Type -AssemblyName Microsoft.VisualBasic
-#[Microsoft.VisualBasic.FileIO.FileSystem]::DeleteDirectory("C:\Chemin\Du\Dossier", "SendToRecycleBin")
-
-#envoyer fichier a la corbeille :
-#Add-Type -AssemblyName Microsoft.VisualBasic
-#[Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile("C:\Chemin\Du\Fichier", "SendToRecycleBin")

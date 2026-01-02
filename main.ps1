@@ -1,30 +1,11 @@
-﻿Import-Module "$PSScriptRoot\src\Menu\GitMenu.psm1"
-
-Clear-Host
-Show-GitMenu
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$Global:ErrorActionPreference = "Stop"
+﻿$Global:ErrorActionPreference = "Stop"
 
 #======================================================================
 # Importation des modules
 #======================================================================
-Import-Module "$PSScriptRoot\..\src\git\searchgit.psm1" -Force -DisableNameChecking
-Import-Module "$PSScriptRoot\..\src\git\clonerepo.psm1" -Force -DisableNameChecking
-Import-Module "$PSScriptRoot\..\src\git\removerepo.psm1" -Force -DisableNameChecking
+Import-Module "$PSScriptRoot\src\searchgit.psm1" -Force -DisableNameChecking
+Import-Module "$PSScriptRoot\src\clonerepo.psm1" -Force -DisableNameChecking
+Import-Module "$PSScriptRoot\src\removerepo.psm1" -Force -DisableNameChecking
 
 #======================================================================
 # Affichage du menu principal

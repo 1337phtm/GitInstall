@@ -65,12 +65,16 @@
     #======================================================================
     foreach ($repo in $repos) {
 
-        $choice = Read-Host "Do you want to clone $($repo.name) ? (Y/N) or all repositories ? (A) "
+        $choice = Read-Host "Do you want to clone $($repo.name) ? (Y/N), all repositories ? (A), or exit [E] "
         Write-Host ""
 
         if ($choice -in @("A", "a")) {
             Clone-All
             break   # ⬅️ IMPORTANT : on sort de la boucle principale
+        }
+
+        if ($choice -in @("E", "e")) {
+            return
         }
 
         if ($choice -in @("Y", "y")) {
