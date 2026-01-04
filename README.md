@@ -1,4 +1,11 @@
-# 🚀 GitInstall
+# 🚀 Git Install
+
+![PowerShell](https://img.shields.io/badge/PowerShell-5.1%20%7C%207+-blue)
+![License](https://img.shields.io/badge/License-MIT--Custom-green)
+![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey)
+![Status](https://img.shields.io/badge/Status-Active-success)
+
+---
 Un module PowerShell complet pour rechercher, cloner et supprimer des dépôts Git sur Windows.
 
 GitInstall est un module PowerShell conçu pour simplifier la gestion des dépôts Git sur Windows.
