@@ -17,7 +17,7 @@ function Show-Main {
     Write-Host "║          WRITTEN BY 1337phtm         ║" -ForegroundColor Green
     Write-Host "╚══════════════════════════════════════╝" -ForegroundColor Green
     Write-Host ""
-    Write-Host "[1]  Install git" -ForegroundColor DarkCyan
+    Write-Host "[1]  Install/Configure git" -ForegroundColor DarkCyan
     Write-Host "[2]  Clone repo from user" -ForegroundColor DarkYellow
     Write-Host "[3]  Remove repo" -ForegroundColor Magenta
     Write-Host ""
