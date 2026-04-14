@@ -3,6 +3,7 @@
 #======================================================================
 # Importation des modules
 #======================================================================
+. $PSScriptRoot\src\Setup.ps1 -LogName $PSCommandPath
 Import-Module "$PSScriptRoot\src\searchgit.psm1" -Force -DisableNameChecking
 Import-Module "$PSScriptRoot\src\clonerepo.psm1" -Force -DisableNameChecking
 Import-Module "$PSScriptRoot\src\removerepo.psm1" -Force -DisableNameChecking
