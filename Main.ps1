@@ -13,10 +13,10 @@ Import-Module "$PSScriptRoot\src\removerepo.psm1" -Force -DisableNameChecking
 #======================================================================
 function Show-Main {
     Clear-Host
-    Write-Host "╔══════════════════════════════════════╗" -ForegroundColor Green
-    Write-Host "║            GITHUB TOOLKIT            ║" -ForegroundColor Green
-    Write-Host "║          WRITTEN BY 1337phtm         ║" -ForegroundColor Green
-    Write-Host "╚══════════════════════════════════════╝" -ForegroundColor Green
+    Write-Host "╔══════════════════════════════════════╗" -ForegroundColor Blue
+    Write-Host "║            GITHUB TOOLKIT            ║" -ForegroundColor Blue
+    Write-Host "║          WRITTEN BY 1337phtm         ║" -ForegroundColor Blue
+    Write-Host "╚══════════════════════════════════════╝" -ForegroundColor Blue
     Write-Host ""
     Write-Host "[1]  Install git" -ForegroundColor DarkCyan
     Write-Host "[2]  Clone repo from user" -ForegroundColor DarkYellow
