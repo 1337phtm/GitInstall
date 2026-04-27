@@ -1,11 +1,10 @@
-﻿$Global:ErrorActionPreference = "Stop"
-
-#======================================================================
+﻿#======================================================================
 # Importation des modules
 #======================================================================
-Import-Module "$PSScriptRoot\src\searchgit.psm1" -Force -DisableNameChecking
-Import-Module "$PSScriptRoot\src\clonerepo.psm1" -Force -DisableNameChecking
-Import-Module "$PSScriptRoot\src\removerepo.psm1" -Force -DisableNameChecking
+. $PSScriptRoot\src\Setup.ps1 -LogName $PSCommandPath
+Import-Module "$PSScriptRoot\src\InstallGit.psm1" -Force -DisableNameChecking
+Import-Module "$PSScriptRoot\src\CloneRepo.psm1" -Force -DisableNameChecking
+Import-Module "$PSScriptRoot\src\RemoveRepo.psm1" -Force -DisableNameChecking
 
 #======================================================================
 # Affichage du menu principal
@@ -29,24 +28,21 @@ function Show-Main {
 #======================================================================
 # Fonction du menu principal
 #======================================================================
-function Start-Main {
-    do {
-        Show-Main
-        $choice = Read-Host "Choose an option"
-        switch ($choice) {
-            "1" { Install-Git }
-            "2" { Clone-Repo }
-            "3" { Remove-Repo }
-            "0" {
-                Clear-Host
-                return
-            }
-            default {
-                Write-Host "Invalid choice." -ForegroundColor Red
-                Pause
-            }
+do {
+    . $PSScriptRoot\src\SearchGit.ps1 -LogName $PSCommandPath
+    Show-Main
+    $choice = Read-Host "Choose an option"
+    switch ($choice) {
+        "1" { Install-Git }
+        "2" { Clone-Repo }
+        "3" { Remove-Repo }
+        "0" {
+            Clear-Host
+            return
         }
-    } until ($choice -eq "0")
-}
-
-Start-Main
+        default {
+            Write-Status ERROR "Invalid choice."
+            Pause
+        }
+    }
+} until ($choice -eq "0")

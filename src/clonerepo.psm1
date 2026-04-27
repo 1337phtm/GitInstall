@@ -1,15 +1,9 @@
-﻿function Clone-Repo {
+﻿. $PSScriptRoot\Setup.ps1 -LogName $PSCommandPath
+function Clone-Repo {
     Clear-Host
-    Search-InstallGit
+    #Search-Git
 
-    #======================================================================
-    # Clone GitHub Repositories
-    #======================================================================
-
-    Write-Host "╔══════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host "║               Git Clone              ║" -ForegroundColor Cyan
-    Write-Host "╚══════════════════════════════════════╝" -ForegroundColor Cyan
-    Write-Host ""
+    Show-SectionHeader "Git Clone"
 
     $clonePath = "C:\Repos"
     if (-not (Test-Path $clonePath)) {
@@ -23,35 +17,33 @@
     $repos = Invoke-RestMethod "https://api.github.com/users/$user/repos"
 
     # Affichage des repos avec numéros
-    Write-Host "Available repositories : " -ForegroundColor Cyan
+    Write-Status INFO "Available repositories : "
     Write-Host ""
 
     for ($i = 0; $i -lt $repos.Count; $i++) {
-        Write-Host "[$($i+1)] $($repos[$i].name)" -ForegroundColor Yellow
-        Write-Host ""
-    }
+        Write-Status INFO "[$($i+1)] $($repos[$i].name)"
 
-    #======================================================================
-    # Clone All GitHub Repositories
-    #======================================================================
+    }
+    Write-Host ""
+
     function Clone-All {
         foreach ($repo in $repos) {
 
             $target = "$clonePath\$($repo.name)"
 
             if (Test-Path $target) {
-                Write-Host "⚠  $($repo.name) already exists. Updating..." -ForegroundColor Yellow
+                Write-Status INFO "$($repo.name) already exists. Updating..."
                 Write-Host ""
                 Set-Location $target
                 git pull origin main
                 Write-Host ""
-                Write-Host "✔  The updating was successful." -ForegroundColor Green
+                Write-Status SUCCESS "The updating was successful."
             }
             else {
-                Write-Host "✔  Cloning $($repo.name)..." -ForegroundColor Green
+                Write-Status SUCCESS " Cloning $($repo.name)..."
                 git clone $repo.clone_url $target
                 Write-Host ""
-                Write-Host "✔  The cloning was successful at $($target)" -ForegroundColor Green
+                Write-Status SUCCESS "The cloning was successful at $($target)"
             }
 
             Write-Host ""
@@ -60,9 +52,6 @@
         Pause
     }
 
-    #======================================================================
-    # Ask user for each repo OR clone all
-    #======================================================================
     foreach ($repo in $repos) {
 
         $choice = Read-Host "Do you want to clone $($repo.name) ? (Y/N), all repositories ? (A), or exit [E] "
@@ -82,26 +71,24 @@
             $target = "$clonePath\$($repo.name)"
 
             if (Test-Path $target) {
-                Write-Host "⚠  Folder already exists. Updating..." -ForegroundColor Yellow
+                Write-Status INFO "Folder already exists. Updating..."
                 Write-Host ""
                 Set-Location $target
                 git pull origin main
                 Write-Host ""
-                Write-Host "✔  The updating was successful." -ForegroundColor Green
+                Write-Status SUCCESS "The updating was successful."
             }
             else {
-                Write-Host "✔  Cloning $($repo.name)..." -ForegroundColor Green
+                Write-Status SUCCESS "Cloning $($repo.name)..."
                 Write-Host ""
                 git clone $repo.clone_url $target
                 Write-Host ""
-                Write-Host "✔  The cloning was successful at $($target)" -ForegroundColor Green
+                Write-Status SUCCESS "The cloning was successful at $($target)"
             }
         }
         else {
-            Write-Host "Skipping $($repo.name)..."
+            Write-Status SKIP "Skipping $($repo.name)..."
         }
-        Write-Host ""
-        Pause
         Write-Host ""
     }
 
