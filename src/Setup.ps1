@@ -26,17 +26,29 @@ param(
     [string]$LogName
 )
 
+<<<<<<< HEAD
 $Global:ErrorActionPreference = "Stop"
 
+=======
+>>>>>>> ffc4afe26573dffbd60b1850251264a9c28598aa
 #======================================================================
 # --- Logs ---
 #======================================================================
 
+<<<<<<< HEAD
 $ScriptName = [System.IO.Path]::GetFileNameWithoutExtension($LogName)
 
 # --- Dossiers de logs ---
 $Global:MainLog = Join-Path $env:LOCALAPPDATA "Github - 1337phtm"
 $Global:ScriptLogDir = Join-Path $Global:MainLog "$($ScriptName)_Logs"
+=======
+$info = [System.IO.Path]::GetFileNameWithoutExtension($LogName)
+
+#function Start-Log {
+# --- Dossiers de logs ---
+$Global:MainLog = Join-Path $env:LOCALAPPDATA "Github - 1337phtm"
+$Global:ScriptLogDir = Join-Path $Global:MainLog "$($info)_Logs"
+>>>>>>> ffc4afe26573dffbd60b1850251264a9c28598aa
 
 foreach ($dir in @($Global:MainLog, $Global:ScriptLogDir)) {
     if (-not (Test-Path $dir)) {
@@ -45,14 +57,27 @@ foreach ($dir in @($Global:MainLog, $Global:ScriptLogDir)) {
 }
 
 # --- Fichiers de log ---
+<<<<<<< HEAD
 $Global:LogFile = Join-Path $Global:ScriptLogDir "$($ScriptName).log"
 $Global:ErrorLogFile = Join-Path $Global:ScriptLogDir "$($ScriptName).error.log"
+=======
+
+foreach ($ScriptDir in @($Global:ScriptLogDir)) {
+    if (-not (Test-Path $ScriptDir)) {
+        New-Item -ItemType Directory -Path $ScriptDir | Out-Null
+    }
+}
+
+$Global:LogFile = Join-Path $Global:ScriptLogDir "$($info).log"
+$Global:ErrorLogFile = Join-Path $Global:ScriptLogDir "$($info).error.log"
+>>>>>>> ffc4afe26573dffbd60b1850251264a9c28598aa
 
 foreach ($file in @($Global:LogFile, $Global:ErrorLogFile)) {
     if (-not (Test-Path $file)) {
         New-Item -ItemType File -Path $file | Out-Null
     }
 }
+<<<<<<< HEAD
 
 #======================================================================
 # --- Rotate de Logs ---
@@ -151,6 +176,16 @@ Write-ErrorLog -Message "Démarrage du script : $($LogName) - $(Get-Date -Format
 Write-ErrorLog -Message ""
 Write-ErrorLog -Message ""
 
+=======
+#}
+
+Add-Content -Path $Global:LogFile -Value "" -Force
+Add-Content -Path $Global:LogFile -Value "" -Force
+$LogEntry = "Démarrage du script : $($LogName) - $(Get-Date -Format "yyyy-MM-dd HH:mm:ss")"
+Add-Content -Path $Global:LogFile -Value $logEntry -Force
+Add-Content -Path $Global:LogFile -Value "" -Force
+Add-Content -Path $Global:LogFile -Value "" -Force
+>>>>>>> ffc4afe26573dffbd60b1850251264a9c28598aa
 
 #======================================================================
 # --- Affichage ---
@@ -170,11 +205,24 @@ function Show-SectionHeader {
     Write-Host "║ $Title" -ForegroundColor Blue
     Write-Host "╚══════════════════════════════════════════╝" -ForegroundColor Blue
     Write-Host ""
+<<<<<<< HEAD
     Write-Log -Message ""
     Write-Log -Message "╔══════════════════════════════════════════╗"
     Write-Log -Message "║ $Title"
     Write-Log -Message "╚══════════════════════════════════════════╝"
     Write-Log -Message ""
+=======
+    $logEntry = ""
+    Add-Content -Path $Global:LogFile -Value $logEntry -Force
+    $logEntry = "╔══════════════════════════════════════════╗"
+    Add-Content -Path $Global:LogFile -Value $logEntry -Force
+    $logEntry = "║ $Title"
+    Add-Content -Path $Global:LogFile -Value $logEntry -Force
+    $logEntry = "╚══════════════════════════════════════════╝"
+    Add-Content -Path $Global:LogFile -Value $logEntry -Force
+    $logEntry = ""
+    Add-Content -Path $Global:LogFile -Value $logEntry -Force
+>>>>>>> ffc4afe26573dffbd60b1850251264a9c28598aa
 
 }
 
@@ -196,10 +244,18 @@ function Write-Status {
     }
 
     # LOG AUTOMATIQUE
+<<<<<<< HEAD
     Write-Log -Message "[$timestamp] [$Type] $Message"
 
     if ($Type -eq "ERROR") {
         Write-ErrorLog -Message "[$timestamp] [$Type] $Message"
+=======
+    $logEntry = "[$timestamp] [$Type] $Message"
+    Add-Content -Path $Global:LogFile -Value $logEntry -Force
+
+    if ($Type -eq "ERROR") {
+        Add-Content -Path $Global:ErrorLogFile -Value $logEntry -Force
+>>>>>>> ffc4afe26573dffbd60b1850251264a9c28598aa
     }
 }
 
