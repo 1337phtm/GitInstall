@@ -1,65 +1,113 @@
-# 🚀 Git Install
+# Create the README.md file with the improved content
+
+# 🚀 Install-ToolBox
 
 ![PowerShell](https://img.shields.io/badge/PowerShell-5.1%20%7C%207+-blue)
-![License](https://img.shields.io/badge/License-MIT--Custom-green)
 ![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey)
+![License](https://img.shields.io/badge/License-MIT--Custom-green)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
 ---
-Un module PowerShell complet pour rechercher, cloner et supprimer des dépôts Git sur Windows.
 
-GitInstall est un module PowerShell conçu pour simplifier la gestion des dépôts Git sur Windows.
-Il propose une interface claire, des outils de recherche avancés, un système de suppression sécurisé et une expérience utilisateur propre et guidée.
+## 📌 Description
+
+**Install-ToolBox** est un module PowerShell conçu pour automatiser et simplifier la gestion de l’environnement de développement Git sous Windows.
+
+Il permet non seulement de manipuler des dépôts Git (clonage, suppression, scan), mais aussi d’installer et configurer les outils essentiels comme :
+
+- Git
+- WSL (Windows Subsystem for Linux)
+- Serveur (soon) & client SSH
+
+Le tout avec une interface claire, interactive et sécurisée.
+
+---
+
+## 🎯 Objectifs
+
+- ⚡ Accélérer la mise en place d’un environnement de dev
+- 🔒 Sécuriser les opérations sensibles (suppression, configuration)
+- 🧰 Centraliser les outils essentiels dans un seul script
+- 🧑‍💻 Améliorer l’expérience utilisateur en PowerShell
 
 ---
 
 ## ✨ Fonctionnalités
 
-### 🔍 Recherche automatique de Git
+### 🔍 Détection & installation de Git
+
 - Vérifie si Git est installé
-- Propose l’installation si nécessaire
-- Détecte automatiquement l’emplacement de Git
+- Propose une installation automatique si absent
+- Détection intelligente du chemin d’installation
 
-### 📥 Clonage de dépôts
-- Clone un dépôt Git à partir d’un utilisateur
-- Vérifie la validité de l’utilisateur
-- Crée automatiquement le dossier cible
-- Affiche un retour clair et lisible
+### 📥 Gestion des dépôts Git
 
-### 🗂️ Scan complet des disques pour trouver des dépôts Git
-- Recherche **tous les dossiers `.git`** sur tous les disques
-- Ignore automatiquement les dossiers système (Windows, Program Files, etc.)
-- Affiche la liste complète des dépôts trouvés
-- Numérotation automatique pour une meilleure lisibilité
+- Clonage de dépôts via utilisateur ou URL
+- Vérification de validité des sources
+- Création automatique des dossiers
+- Retour utilisateur clair et lisible
 
-### 🗑️ Suppression sécurisée de dépôts
-- Demande confirmation pour chaque dépôt
-- Affiche le numéro du dépôt dans la question
-- Suppression récursive et silencieuse
-- Messages de confirmation clairs
+### 🗂️ Scan avancé des dépôts
+
+- Recherche récursive de tous les dossiers `.git`
+- Scan sur tous les disques disponibles
+- Exclusion des dossiers système (Windows, Program Files, etc.)
+- Affichage numéroté et structuré
+
+### 🗑️ Suppression sécurisée
+
+- Confirmation utilisateur obligatoire
+- Identification des dépôts par index
+- Suppression récursive propre
+- Messages explicites
+
+### 🐧 Installation de WSL
+
+- Installation automatique de WSL
+- Préparation de l’environnement Linux
+
+### 🔐 Configuration SSH
+
+- Installation du client et serveur SSH
+- Préparation pour connexions distantes
+
+---
+
+## 🖥️ Prérequis
+
+- Windows 10 / 11
+- PowerShell 5.1 ou supérieur
+- Droits administrateur recommandés
 
 ---
 
 ## 📦 Installation
 
-Clone le repo :
-
 ```powershell
-git clone https://github.com/1337phtm/GitInstall
+git clone https://github.com/1337phtm/Install-ToolBox
+cd Install-ToolBox
+./Main.ps1
 ```
-
 
 ## 📁 Structure du projet
 
 ```text
-GitInstall/
-│
-├── src/
-│   ├── GitInstall/
-│   │   ├── searchgit.psm1
-│   │   ├── clonerepo.psm1
-│   │   └── removerepo.psm1
-│
-├── git.ps1
-└── README.md
-```text
+├── .gitignore
+├── Main.ps1
+├── Make-Arbo.ps1
+├── README.md
+└── src
+    ├── Display.ps1
+    ├── Options.ps1
+    ├── Setup.ps1
+    ├── Git-ToolBox
+    │   ├── clonerepo.psm1
+    │   ├── InstallGit.psm1
+    │   ├── removerepo.psm1
+    │   └── SearchGit.ps1
+    ├── SSH-ToolBox
+    │   ├── Install-sshClient.psm1
+    │   └── Module.ps1
+    └── WSL-ToolBox
+        └── Install-WSL.psm1
+```

@@ -1,4 +1,4 @@
-﻿. $PSScriptRoot\Setup.ps1 -LogName $PSCommandPath
+﻿. $PSScriptRoot\..\Setup.ps1 -ModuleMode
 function Clone-Repo {
     Clear-Host
     #Search-Git

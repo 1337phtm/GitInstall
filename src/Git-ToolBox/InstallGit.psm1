@@ -1,4 +1,5 @@
-﻿function Install-Git {
+﻿. $PSScriptRoot\..\Setup.ps1 -ModuleMode
+function Install-Git {
     Clear-Host
     Show-SectionHeader "Git Install"
 

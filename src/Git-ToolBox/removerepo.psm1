@@ -1,4 +1,4 @@
-﻿. $PSScriptRoot\Setup.ps1 -LogName $PSCommandPath
+﻿. $PSScriptRoot\..\Setup.ps1 -ModuleMode
 function Remove-Repo {
 
     Clear-Host
